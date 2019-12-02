@@ -1,0 +1,39 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+// this one is an easy one! nicea and clear
+
+int main() {
+    void calculate_w_mean(int a, double weight[],double score[]);
+    int i,a; //enter number of scores/weights
+    scanf("%i",&a);
+    double weight[a], score[a];
+    for (i=0;i<a;i++)
+    {
+        scanf("%lf",&score[i]);
+    }
+        for (i=0;i<a;i++)
+    {
+        scanf("%lf",&weight[i]);
+    }    
+    calculate_w_mean(a,weight,score);
+    return 0;
+}
+void calculate_w_mean(int a, double weight[],double score[])
+{
+    int i;
+    double sum=0;
+    double w_sum=0;
+    double w_s;
+    for(i=0;i<a;i++)
+    {
+        w_s=weight[i]*score[i];
+        w_sum=w_sum+weight[i];
+        sum=w_s+sum;
+    }
+    printf("%.1lf",sum/w_sum);
+}
