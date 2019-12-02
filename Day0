@@ -56,6 +56,8 @@ void median(int a,double X[])
     int i,j;
     double median,chec;
     
+// arranging in ascending order changes the array sent from main function..more scope for manipulation :)
+
     for (i=0;i<a-1;i++)
     {
         for (j=i+1;j<a;j++)
