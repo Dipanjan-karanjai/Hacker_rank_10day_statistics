@@ -1,0 +1,119 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+// sorry for the nightmarish readability
+// inconvenience regreted 
+
+int main() {
+    
+    void mean(int a,double X[]);
+    void median(int a,double X[]);
+    void mode(int a,double X[]);
+    
+ // a is the number of entries for which the mean median and mode needs to be found
+    int a,i; 
+    scanf("%i", &a);
+    
+    double X[a];
+    
+   // initialisation of the X matrix/array containing the entries 
+     for (i=0;i<a;i++)
+    {
+        X[i]=0;
+    }
+    
+   // entry input
+   
+    for (i=0;i<a;i++)
+    {
+        scanf("%lf",&X[i]);
+    }
+    mean(a,X);
+    median(a,X);
+    mode(a,X);
+    
+    return 0;
+
+}
+void mean(int a,double X[])
+{
+    int i;
+    double mean;
+    double sum=0;
+    for (i=0;i<a;i++)
+    {
+        sum=X[i]+sum;
+    }
+    mean=sum/a;
+    printf("%.1lf\n",mean);
+}
+void median(int a,double X[])
+{
+    int i,j;
+    double median,chec;
+    
+    for (i=0;i<a-1;i++)
+    {
+        for (j=i+1;j<a;j++)
+    {
+        if (X[i]>X[j])
+        {
+            chec=X[i];
+            X[i]=X[j];
+            X[j]=chec;
+        }
+    }
+    }
+    
+    if (a/2==0)
+    printf("median is %.1lf",X[i/2+1]);
+    else 
+    printf("%.1lf\n",(X[i/2]+X[i/2+1])/2);
+}
+void mode(int a,double X[])
+{
+    int i,j,flag;
+    int count;
+    int location=0;
+    int modeno[a];
+    for (i=0;i<a;i++)
+    {
+        modeno[i]=0;
+    }
+    for (i=0;i<a;i++)
+    {
+        count=0;
+        for (j=0;j<a;j++)
+        {
+          if (X[i]==X[j])
+          {
+            count=count+1;
+            modeno[i]=count;
+          }      
+        }
+    }
+    for (i=1;i<a;i++)
+    {
+        if(modeno[i]>modeno[location])
+        {
+            location=i;
+        }
+    }
+    for (i=0;i<a-1;i++)
+    {
+        for (j=1;j<a;j++)
+        {
+        if (modeno[i]==modeno[j])
+        flag=0;
+        else
+        flag=1;
+        }
+        }
+            printf("%lf\n",X[location]);
+            
+    }
+    
