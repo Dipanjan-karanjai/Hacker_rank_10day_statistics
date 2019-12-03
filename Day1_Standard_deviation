@@ -1,0 +1,47 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    void calculate_std_dev(int a,double arr[]);
+    int a,i;
+    double arr[a];
+    scanf("%i",&a);
+    for (i=0;i<a;i++)
+    scanf("%lf",&arr[i]);
+
+    calculate_std_dev(a,arr);  
+    return 0;
+}
+void calculate_std_dev(int a,double arr[])
+{
+    double mean(int a,double arr[]);
+    double mean_val,variance;
+    double newsum=0;
+    int i;
+    mean_val=mean(a,arr);
+    for (i=0;i<a;i++)
+    {
+        variance=(arr[i]-mean_val)*(arr[i]-mean_val)/a;
+        newsum=newsum+variance;
+    }
+    
+    printf("%.1lf",sqrt(newsum));
+}
+double mean(int a, double arr[])
+{
+    int i;
+    double ret;
+    int sum=0;
+    for(i=0;i<a;i++)
+    {
+        sum=arr[i]+sum;
+    }
+    ret=sum/a;
+    return ret;
+
+}
