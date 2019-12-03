@@ -71,7 +71,7 @@ void median(int a,double X[])
     }
     }
     
-    if (a/2==0)
+    if (a%2==0)
     printf("median is %.1lf",X[i/2+1]);
     else 
     printf("%.1lf\n",(X[i/2]+X[i/2+1])/2);
