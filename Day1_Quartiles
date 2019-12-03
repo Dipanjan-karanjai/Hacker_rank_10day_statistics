@@ -1,0 +1,80 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    void arrange(int a, double arr[]);
+    void find_quartile(int a,double arr[],double arr1[],double arr2[]);
+   int i,a;
+   scanf("%i",&a);
+   double arr[a],arr1[a/2],arr2[a/2];
+   
+   for (i=0;i<a;i++)
+   scanf("%lf",&arr[i]); 
+
+   arrange(a,arr);
+
+// breaking the array into 2 pieces
+   if (a%2==0)
+   {
+   for (i=0;i<a/2;i++)
+   arr1[i]=arr[i];
+
+   for (i=a/2;i<a;i++)
+   arr2[i-a/2]=arr[i];
+   }
+   else 
+   {
+       for (i=0;i<a/2;i++)
+       arr1[i]=arr[i];
+       for (i=a/2+1;i<a;i++)
+       arr2[i-(a/2+1)]=arr[i];
+   }
+   find_quartile(a,arr,arr1,arr2);
+
+}
+void arrange(int a,double arr[])
+{
+    int i,j;
+    double chec;
+    for (i=0;i<a;i++)
+    {
+        for (j=i+1;j<a;j++)
+        {
+            if (arr[i]>arr[j])
+            {
+                chec=arr[i];
+                arr[i]=arr[j];
+                arr[j]=chec;
+            }
+        }
+    }
+}
+void find_quartile(int a,double arr[],double arr1[],double arr2[])
+{
+    double median(int b,double arr[]);
+    int q1,q2,q3;
+    
+    q1=median(a/2,arr1);
+    q2=median(a,arr);
+    q3=median(a/2,arr2);
+    
+    printf("%i\n",q1);
+    printf("%i\n",q2);
+    printf("%i\n",q3);
+}
+double median(int b,double arr[])
+{
+    double med;
+    if (b%2==0)
+    {
+        med=(arr[b/2]+arr[b/2-1])/2;
+    }
+    else
+    med=arr[b/2];
+    return med;
+}
